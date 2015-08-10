@@ -19,8 +19,10 @@ export default Ember.Controller.extend({
   actions: {
     upperNames: function(update) {
       console.log('update?', update);
-      this.set('update', update);
+      // I'd normall update this service via a different component
+      // but do it here to simplify sample
       this.get('fakeService').set('upper', update);
+      this.set('update', update);
     }
   }
 });
