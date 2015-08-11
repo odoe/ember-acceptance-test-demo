@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
+import {waitFor} from "../helpers/utilities";
 import startApp from 'acceptance-demo/tests/helpers/start-app';
 
 var application;
@@ -23,16 +24,11 @@ test('visited', function(assert) {
 });
 
 test('click and display names', function(assert) {
-  var done = assert.async();
   visit('/');
-
-  setTimeout(function() {
-    click('a[href=#]');
-    andThen(function() {
-      assert.equal(Ember.$('.name-container').children().length, 4);
-      console.log('test done');
-      done();
+  click('a[href=#]');
+  andThen(function() {
+    waitFor(function() {
+      assert.equal(find('.name-container').children().length, 4);
     });
-  }, 1000);
-
+  });
 });
