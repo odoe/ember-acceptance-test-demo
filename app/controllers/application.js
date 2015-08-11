@@ -21,8 +21,10 @@ export default Ember.Controller.extend({
       console.log('update?', update);
       // I'd normall update this service via a different component
       // but do it here to simplify sample
-      this.get('fakeService').set('upper', update);
-      this.set('update', update);
+      Ember.run(() => {
+        this.get('fakeService').set('upper', update);
+        this.set('update', update);
+      });
     }
   }
 });
